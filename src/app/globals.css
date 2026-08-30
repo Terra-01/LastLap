@@ -1,0 +1,244 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Vendored from shadcn/tailwind.css (the accordion bits we use) so the shadcn
+   CLI isn't a runtime dependency. The .no-scrollbar utility it also shipped is
+   already defined below. */
+@theme inline {
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height, var(--accordion-panel-height, auto));
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height, var(--accordion-panel-height, auto));
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@custom-variant data-open {
+  &:where([data-state="open"]),
+  &:where([data-open]:not([data-open="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-closed {
+  &:where([data-state="closed"]),
+  &:where([data-closed]:not([data-closed="false"])) {
+    @slot;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist);
+  --font-heading: var(--font-funnel);
+
+  /* LastLap brand tokens */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-hairline: var(--hairline);
+  --color-night: var(--night);
+  --color-surface: var(--surface);
+
+  --ease-brand: cubic-bezier(0.44, 0, 0.56, 1);
+
+  /* shadcn mappings (kept) */
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+/* Site is always dark — single source of truth */
+:root {
+  --radius: 2px;
+
+  --night: #0a0a0a;
+  --surface: #0a0a0a;
+  --brand: #b81d1d;
+  --brand-hover: #d62222;
+  --hairline: rgba(255, 255, 255, 0.1);
+
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #0a0a0a;
+  --card-foreground: #ffffff;
+  --popover: #0a0a0a;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #0a0a0a;
+  --secondary: #141414;
+  --secondary-foreground: #ffffff;
+  --muted: #141414;
+  --muted-foreground: rgba(255, 255, 255, 0.6);
+  --accent: #141414;
+  --accent-foreground: #ffffff;
+  --destructive: #b81d1d;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: rgba(255, 255, 255, 0.3);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    background: var(--brand);
+    color: #fff;
+  }
+  /* Anchor jumps land below the fixed 64px nav */
+  :where(section, footer)[id] {
+    scroll-margin-top: 4.5rem;
+  }
+  /* Visible keyboard focus, on-brand */
+  :where(a, button):focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+}
+
+/* Typography scale — Funnel Display headings, Geist body, tight tracking */
+@layer components {
+  .t-display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 1.1rem + 4.9vw, 3.8125rem);
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+    font-weight: 400;
+  }
+  .t-h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 1.1rem + 3.1vw, 3.0625rem);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+  .t-h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 2.4375rem);
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+  .t-h4 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 1.2rem + 1.1vw, 1.9375rem);
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+  .t-h5 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.5625rem);
+    line-height: 1.3;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+  .t-h6 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    line-height: 1.4;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+  }
+  .t-body {
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+  .t-small {
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+  }
+  .t-eyebrow {
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Leaflet — dark map styling */
+.leaflet-container {
+  background: #0a0a0a;
+  font-family: var(--font-sans);
+}
+.leaflet-control-attribution {
+  background: rgba(10, 10, 10, 0.7) !important;
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+.leaflet-control-attribution a {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background: #141414;
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+.leaflet-tooltip.lastlap-tip {
+  background: #141414;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 12px;
+  box-shadow: none;
+  padding: 4px 8px;
+}
+.leaflet-tooltip-top.lastlap-tip::before {
+  border-top-color: #141414;
+}
