@@ -1,0 +1,18 @@
+import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+
+export function Section({
+  id,
+  className,
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section id={id} className={cn("py-20 lg:py-24", className)}>
+      {children}
+    </section>
+  );
+}
