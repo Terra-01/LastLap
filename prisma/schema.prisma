@@ -1,0 +1,22 @@
+// LastLap waitlist (Phase 1). Prisma 7 + driver adapter (no native engine binary).
+// Future-proofed toward Phase 2 (this row can grow into a customer/lead).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model WaitlistSignup {
+  id        String   @id @default(cuid())
+  email     String?  @unique
+  phone     String
+  source    String
+  consent   Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
