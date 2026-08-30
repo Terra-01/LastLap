@@ -1,15 +1,20 @@
 # LastLap
 
-The pre-launch landing page and waitlist for a sim racing lounge and cafe in
-Brookfield, Bengaluru. One page, one conversion: get on the list before the
-doors open.
+A pre-launch landing page and waitlist for a sim racing lounge and cafe.
 
-This repository is published as a **case study** — a real, shipped commercial
-site with its design and engineering decisions written down. It is not a
-template. Every string in `src/lib/content.ts` belongs to one business, and the
-branding is not reusable. See [License](#license).
+**LastLap is not a real business.** It is a fictional brief, built as a
+portfolio piece: an exercise in designing and shipping the kind of pre-opening
+page a real local venue would need. The venue, the opening date, the six rigs,
+the address and the phone number are all invented. Nobody is opening a cafe in
+Brookfield on 1 July 2026.
 
-**Live:** https://last-lap.vercel.app
+That framing is the point rather than a disclaimer. The interesting part of this
+repo is the set of engineering decisions underneath a deliberately ordinary
+marketing page — see [The parts worth reading](#the-parts-worth-reading).
+
+It is a case study, not a template. Every string in `src/lib/content.ts` belongs
+to this one fictional brand, and none of it is meant to be reused as-is. See
+[License](#license).
 
 ---
 
@@ -112,16 +117,22 @@ data. Edit it there, not inside components.
 
 ## Honest notes
 
-- **The venue imagery is AI-generated placeholder art**, including the hero
-  video, which carries a visible Veo watermark. The space does not exist yet.
-  All of it gets replaced with photography once it does.
-- **The contact details and the map pin are placeholders too.** The WhatsApp
-  number is a dummy, and the map points at Cubbon Park rather than the real
-  address, which is not public until the lease is signed. Both are marked as
-  such in `src/lib/content.ts`.
-- **This is a marketing site, not a product.** The waitlist endpoint is
-  unauthenticated and unthrottled, which is normal for a public signup form and
-  still wants a rate limit before any real launch push.
+- **Everything about the business is invented**, and so is every asset. The
+  imagery is AI-generated, and the hero video carries a visible Veo watermark.
+  There is no venue to photograph.
+- **The contact details and the map pin are deliberately non-functional.** The
+  WhatsApp number is a dummy, and the map points at Cubbon Park — a public park
+  — specifically so the pin does not sit on some real business's premises. Both
+  are marked in `src/lib/content.ts`.
+- **Do not run this as a live signup form.** The waitlist writes real email
+  addresses and phone numbers to Postgres and to Resend, and it is
+  unauthenticated and unthrottled. That is fine for a demo nobody is pointed at,
+  and not fine the moment a real person fills it in for a business that does not
+  exist. If you deploy this anywhere public, leave `DATABASE_URL` and
+  `RESEND_API_KEY` unset — the form then runs its full UI flow and persists
+  nothing.
+- **No rate limiting.** Normal for a public signup form, and it would need one
+  before any real launch push.
 
 ## License
 

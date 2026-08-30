@@ -1,7 +1,12 @@
 # LastLap
 
-Sim racing lounge and serious cafe in Brookfield, Bengaluru, opening 1 July 2026.
-This repo is currently the **pre-launch landing / waitlist page**, built with Next.js 16 and deployed on Vercel.
+**Fictional brief.** LastLap is not a real business — it is an invented sim
+racing lounge and cafe, used as a portfolio exercise in building the kind of
+pre-opening page a real local venue would need. The venue, the 1 July 2026
+opening date, the Brookfield location, the rigs and the contact details are all
+made up. Treat the brand and copy as a design brief, not as facts.
+
+This repo is the **pre-launch landing / waitlist page**, built with Next.js 16.
 
 ## Scope
 

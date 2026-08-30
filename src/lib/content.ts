@@ -7,22 +7,25 @@ export const site = {
   openingDate: "1 July 2026",
   openingLine: "Opening 1 July 2026 · Brookfield",
   email: "hello@lastlap.in",
-  // PLACEHOLDER. This number is a dummy and is wired into the nav, hero, FAQ,
-  // waitlist and footer, so every "message us" click on the live site currently
-  // goes nowhere. Swap all three fields together when the real line exists.
+  // Invented number for a fictional business. It is wired into the nav, hero,
+  // FAQ, waitlist and footer, so every "message us" click goes nowhere — which
+  // is correct here. Deliberately not a real, reachable line: a demo should
+  // never send strangers to someone else's phone.
   whatsapp: {
     display: "+91 12345 12345",
     tel: "tel:+911234512345",
     wa: "https://wa.me/911234512345?text=Hey%20LastLap%2C%20tell%20me%20more",
   },
-  // PLACEHOLDER until the lease is signed. Cubbon Park — a public park, chosen
-  // deliberately so the map pin does not label somebody else's premises with
-  // our name. The previous value was lifted straight out of a Google Maps place
-  // entry and dropped the "LastLap" tooltip on a real, unrelated, operating
-  // business. Never point these at an address we do not hold.
+  // LastLap is a fictional business, so there is no real address to point at.
+  // Cubbon Park is used deliberately: it is a large public park, which means
+  // the map pin and its "LastLap" tooltip do not sit on top of somebody else's
+  // premises. An earlier value here was lifted out of a Google Maps place entry
+  // and put the tooltip on a real, unrelated, operating business — never do
+  // that, even for a demo.
   //
-  // Note this does not match the "Brookfield, Bengaluru" in the copy above and
-  // in the FAQ. Replace both together with the real venue before launch.
+  // It does not match the "Brookfield, Bengaluru" in the copy above, and that
+  // is accepted: both are invented, and a fictional venue cannot have a
+  // consistent real location.
   mapsUrl: "https://www.google.com/maps?q=12.9750,77.5933",
   coords: { lat: 12.975, lng: 77.5933 },
 };

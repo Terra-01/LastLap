@@ -71,7 +71,7 @@ docs/                 # this folder
 - Action: `app/actions/waitlist.ts` validates with zod (**optional** email, required Indian phone, required source), drops bot submissions via a `company` honeypot, then writes a `WaitlistSignup` row via Prisma. A duplicate email (`P2002`) is treated as success.
 - Prisma client: `lib/prisma.ts` builds a lazy singleton with the `@prisma/adapter-pg` driver adapter, constructed only when `DATABASE_URL` is set (so local dev without a DB returns a soft success and the UI flow still works).
 - Resend: `lib/resend.ts` saves each signup that has an email as a Resend contact via `contacts.create` (the global Contacts endpoint, no audience ID needed in the installed SDK; best-effort: never throws, so it can't fail the signup). No confirmation email is sent yet; `sendWaitlistConfirmation` stays a dormant stub until launch. Without `RESEND_API_KEY`, contact-saving is skipped.
-- **To collect real signups:** set `DATABASE_URL`, run `npm run db:push` once, then submit. Contacts are also saved to Resend whenever `RESEND_API_KEY` is set.
+- **Persisting signups:** set `DATABASE_URL`, run `npm run db:push` once, then submit. Contacts also go to Resend whenever `RESEND_API_KEY` is set. LastLap is a fictional business, so leave both unset on any public deployment — the UI flow still works end to end and nothing is written.
 
 ## Roadmap (phases)
 

@@ -65,4 +65,4 @@ In `public/assets`, all webp, compressed with `cwebp` (images) and `ffmpeg` (vid
 - Space: `space-lead`, `space-detail`.
 - Hero: `hero.webm` + `hero.mp4` fallback + `hero-poster.webp` (the `<video>` has both sources and the poster).
 
-These are AI-generated placeholders to be swapped with real photos as the venue is built. The game "logos" are currently styled chips (icon + name); drop real brand-logo SVGs in to swap them.
+These are AI-generated. LastLap is a fictional business, so there is no venue to photograph and nothing to swap them for. The game "logos" are currently styled chips (icon + name); drop real brand-logo SVGs in to swap them.
