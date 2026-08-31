@@ -136,8 +136,14 @@ data. Edit it there, not inside components.
 
 ## License
 
-Not licensed for reuse. The code is public to be read, not copied — the
-branding, copy and imagery belong to a real business, and the AI-generated
-placeholder art is not mine to sublicense. If you want to use something here,
-open an issue and ask; the answer for a genuinely separable technical piece is
-very likely yes.
+Not licensed for reuse. The code is public to be read, not copied.
+
+To be unambiguous, since this section is the one people treat as operative:
+**LastLap is a fictional brand and not a real business.** The name, copy, rigs,
+address, opening date and offers are invented for this exercise. Nothing here
+represents a real venue, and no real venue's branding is being distributed.
+
+The reason it is unlicensed is the imagery: it is AI-generated, which leaves its
+copyright status unsettled enough that granting rights over it would be a claim
+I cannot back. If you want to use something here, open an issue and ask — for a
+genuinely separable technical piece the answer is very likely yes.

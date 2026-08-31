@@ -63,7 +63,8 @@ docs/                 # this folder
 
 - Local: **`.env.local`** holds `DATABASE_URL` (Neon **pooled** connection string, host has `-pooler`) and `RESEND_API_KEY`, plus optional `NEXT_PUBLIC_SITE_URL` (base URL for canonical/OG/sitemap/robots; defaults to `https://lastlap.vercel.app`). `.env.example` documents them.
 - Next.js loads `.env.local` at runtime. `prisma.config.ts` explicitly loads `.env.local` too (Prisma's default only reads `.env`).
-- Vercel: set `DATABASE_URL` and `RESEND_API_KEY` (and `NEXT_PUBLIC_SITE_URL` if the deployed domain differs from `https://lastlap.vercel.app`) in the project's Environment Variables (`.env.local` is gitignored and never deploys). Root is the app; the page is statically prerendered.
+- Vercel: set `NEXT_PUBLIC_SITE_URL` if the deployed domain differs from `https://lastlap.vercel.app`. `.env.local` is gitignored and never deploys. Root is the app; the page is statically prerendered.
+- **Do not set `DATABASE_URL` or `RESEND_API_KEY` on a public deployment.** LastLap is fictional, so a signup there is a real person handing a real phone number to a venue that will never open. Leave both unset and the Prisma client is never constructed, the Resend call is skipped, and the form still runs its whole UI flow. Set them only for a local database you own.
 
 ## Waitlist backend
 
